@@ -41,7 +41,16 @@ import { Application } from '../application.model';
   template: `
     <section class="page">
       <header class="page-header">
-        <h1>Applications</h1>
+        <div class="header-row">
+          <h1>Applications</h1>
+          <a
+            mat-stroked-button
+            routerLink="/portfolio/migrate"
+          >
+            <mat-icon>upgrade</mat-icon>
+            Migrate tags
+          </a>
+        </div>
         <p class="muted">
           Aker BP portfolio &mdash; {{ applications().length }} total &middot;
           {{ activeCount() }} active
@@ -159,8 +168,15 @@ import { Application } from '../application.model';
         padding: 24px 16px;
       }
       .page-header h1 {
-        margin: 0 0 4px;
+        margin: 0;
         font-weight: 500;
+      }
+      .header-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 4px;
       }
       .muted {
         color: var(--color-text-soft, #888);

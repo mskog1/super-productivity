@@ -139,6 +139,15 @@ export const APP_ROUTES: Routes = [
     data: { page: 'portfolio-application-detail' },
     canActivate: [FocusOverlayOpenGuard],
   },
+  {
+    path: 'portfolio/migrate',
+    loadComponent: () =>
+      import('./features/portfolio/migration/migration-page.component').then(
+        (m) => m.PortfolioMigrationPageComponent,
+      ),
+    data: { page: 'portfolio-migrate' },
+    canActivate: [FocusOverlayOpenGuard],
+  },
 
   // Wildcard — redirects to default start page
   {
