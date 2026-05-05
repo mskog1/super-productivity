@@ -1,6 +1,8 @@
 import { createSelector, MemoizedSelector } from '@ngrx/store';
 import { applicationAdapter, selectApplicationFeatureState } from './application.reducer';
 import { Application, ApplicationStatus } from '../application.model';
+import { selectAllTasks } from '../../../tasks/store/task.selectors';
+import { Task } from '../../../tasks/task.model';
 
 export const {
   selectIds: selectApplicationIds,
@@ -58,4 +60,28 @@ export const selectApplicationsForTagId = (
 ): MemoizedSelector<object, Application[]> =>
   createSelector(selectAllApplications, (apps): Application[] =>
     apps.filter((app) => (app.relatedTagIds ?? []).includes(tagId)),
+  );
+
+/**
+ * All tasks (active store, not archive) that belong to a given Application.
+ * A task belongs to the Application iff at least one of its `tagIds` is in
+ * `application.relatedTagIds`. Sub-tasks are excluded — they show up under
+ * their parent.
+ */
+export const selectTasksForApplication = (
+  applicationId: string,
+): MemoizedSelector<object, Task[]> =>
+  createSelector(
+    selectApplicationById(applicationId),
+    selectAllTasks,
+    (app, tasks): Task[] => {
+      if (!app) {
+        return [];
+      }
+      const related = new Set(app.relatedTagIds ?? []);
+      if (related.size === 0) {
+        return [];
+      }
+      return tasks.filter((t) => !t.parentId && t.tagIds.some((tId) => related.has(tId)));
+    },
   );

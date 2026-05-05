@@ -7,6 +7,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -30,6 +31,7 @@ import { Application } from '../application.model';
   imports: [
     CommonModule,
     FormsModule,
+    RouterLink,
     MatButtonModule,
     MatIconModule,
     MatInputModule,
@@ -103,7 +105,10 @@ import { Application } from '../application.model';
         <ul class="app-list">
           @for (app of applications(); track app.id) {
             <li class="app-row">
-              <div class="app-main">
+              <a
+                class="app-main"
+                [routerLink]="['/portfolio/application', app.id]"
+              >
                 <div class="app-title">{{ app.title }}</div>
                 @if (app.shortName) {
                   <div class="app-meta">{{ app.shortName }}</div>
@@ -111,7 +116,7 @@ import { Application } from '../application.model';
                 <div class="app-meta">
                   Created {{ app.createdAt | date: 'mediumDate' }}
                 </div>
-              </div>
+              </a>
               <div class="app-actions">
                 @if (app.isArchived) {
                   <button
@@ -197,6 +202,15 @@ import { Application } from '../application.model';
       }
       .app-row:hover {
         background: var(--color-hover-surface, rgba(0, 0, 0, 0.03));
+      }
+      .app-main {
+        flex: 1;
+        text-decoration: none;
+        color: inherit;
+        cursor: pointer;
+      }
+      .app-main:hover .app-title {
+        text-decoration: underline;
       }
       .app-title {
         font-weight: 500;
