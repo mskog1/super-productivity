@@ -217,6 +217,13 @@ export const ACTION_TYPE_TO_CODE: Record<ActionType, string> = {
 
   // Repair actions (Z)
   [ActionType.REPAIR_AUTO]: 'ZR',
+
+  // ─── Aker BP fork: portfolio modules (Q = applicAtion, fork-only prefix) ──
+  [ActionType.APPLICATION_ADD]: 'QA',
+  [ActionType.APPLICATION_UPDATE]: 'QU',
+  [ActionType.APPLICATION_DELETE]: 'QD',
+  [ActionType.APPLICATION_DELETE_MULTIPLE]: 'QDM',
+  [ActionType.APPLICATION_UPDATE_ORDER]: 'QO',
 };
 
 // Reverse mapping: code -> action type
