@@ -49,6 +49,16 @@ import { plannerFeatureKey } from '../../features/planner/store/planner.reducer'
 import { BOARDS_FEATURE_NAME } from '../../features/boards/store/boards.reducer';
 import { menuTreeFeatureKey } from '../../features/menu-tree/store/menu-tree.reducer';
 import { REMINDER_FEATURE_NAME } from '../../features/reminder/store/reminder.reducer';
+// Aker BP fork — portfolio modules
+import {
+  APPLICATION_FEATURE_NAME,
+  applicationAdapter,
+  selectApplicationFeatureState,
+} from '../../features/portfolio/application/store/application.reducer';
+import {
+  selectApplicationById,
+  selectApplicationEntitiesFromAdapter,
+} from '../../features/portfolio/application/store/application.selectors';
 import {
   SECTION_FEATURE_NAME,
   adapter as sectionAdapter,
@@ -292,6 +302,19 @@ export const ENTITY_CONFIGS = {
       selectSectionEntitiesFromAdapter,
     ),
     selectById: selectSectionById,
+  },
+
+  // Aker BP fork — portfolio modules
+  APPLICATION: {
+    storagePattern: 'adapter',
+    featureName: APPLICATION_FEATURE_NAME,
+    payloadKey: 'application',
+    adapter: applicationAdapter,
+    selectEntities: createSelector(
+      selectApplicationFeatureState,
+      selectApplicationEntitiesFromAdapter,
+    ),
+    selectById: selectApplicationById,
   },
 
   // ── SINGLETON ENTITIES ─────────────────────────────────────────────────────

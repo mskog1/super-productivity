@@ -46,6 +46,12 @@ import {
 } from '../features/section/store/section.reducer';
 import { TAG_FEATURE_NAME, tagReducer } from '../features/tag/store/tag.reducer';
 import { TagEffects } from '../features/tag/store/tag.effects';
+// Aker BP fork — portfolio modules
+import {
+  APPLICATION_FEATURE_NAME,
+  applicationReducer,
+} from '../features/portfolio/application/store/application.reducer';
+import { ApplicationEffects } from '../features/portfolio/application/store/application.effects';
 import {
   TASK_REPEAT_CFG_FEATURE_NAME,
   taskRepeatCfgReducer,
@@ -145,6 +151,10 @@ import {
 
     StoreModule.forFeature(TAG_FEATURE_NAME, tagReducer),
     EffectsModule.forFeature([TagEffects]),
+
+    // Aker BP fork — portfolio modules
+    StoreModule.forFeature(APPLICATION_FEATURE_NAME, applicationReducer),
+    EffectsModule.forFeature([ApplicationEffects]),
 
     StoreModule.forFeature(TASK_REPEAT_CFG_FEATURE_NAME, taskRepeatCfgReducer),
     EffectsModule.forFeature([TaskRepeatCfgEffects, TaskRepeatCleanupEffects]),

@@ -197,4 +197,11 @@ export enum ActionType {
 
   // Repair actions (Z)
   REPAIR_AUTO = '[Repair] Auto Repair',
+
+  // ─── Aker BP fork: portfolio modules ─────────────────────────────────────
+  APPLICATION_ADD = '[Application] Add Application',
+  APPLICATION_UPDATE = '[Application] Update Application',
+  APPLICATION_DELETE = '[Application] Delete Application',
+  APPLICATION_DELETE_MULTIPLE = '[Application] Delete multiple Applications',
+  APPLICATION_UPDATE_ORDER = '[Application] Update Application Order',
 }

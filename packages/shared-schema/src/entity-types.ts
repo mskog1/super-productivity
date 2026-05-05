@@ -31,6 +31,7 @@ export const ENTITY_TYPES = [
   'REMINDER',
   'PLUGIN_USER_DATA',
   'PLUGIN_METADATA',
+  'APPLICATION', // Aker BP fork — portfolio-management entity (extends Tag concept)
   'MIGRATION',
   'RECOVERY', // For disaster recovery imports
   'ALL', // For full state imports (sync, backup)
