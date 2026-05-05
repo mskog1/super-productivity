@@ -120,6 +120,17 @@ export const APP_ROUTES: Routes = [
     loadComponent: () =>
       import('./routes/pages.routes').then((m) => m.ConfigPageComponent),
   },
+  // Aker BP fork — portfolio modules
+  {
+    path: 'portfolio/applications',
+    loadComponent: () =>
+      import('./features/portfolio/application/application-list-page/application-list-page.component').then(
+        (m) => m.ApplicationListPageComponent,
+      ),
+    data: { page: 'portfolio-applications' },
+    canActivate: [FocusOverlayOpenGuard],
+  },
+
   // Wildcard — redirects to default start page
   {
     path: '**',
